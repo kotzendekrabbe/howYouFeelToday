@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState, ReactElement } from "react";
+import React, { PropsWithChildren, useState } from "react";
 
 export interface ToggleButtonsProps {
   onActiveButtonChange(value: string): void;
@@ -16,7 +16,7 @@ export function ToggleButtons({
       {React.Children.map(children, child => {
         return React.isValidElement(child)
           ? React.cloneElement(child, {
-              click: (value: string) => {
+              onClick: (value: string) => {
                 setActiveButton(value);
                 onActiveButtonChange(value);
               },

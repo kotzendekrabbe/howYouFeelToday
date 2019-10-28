@@ -6,13 +6,13 @@ export interface TabProps {
   readonly isActive?: boolean;
   readonly children: React.ReactNode;
   readonly tabID: number;
-  click?(): void;
+  onClick?(): void;
 }
 
 export function Tab({
   label,
   isActive,
-  click,
+  onClick: onClick,
   children
 }: PropsWithChildren<TabProps>) {
   const tabView = document.getElementById("tabViews");
@@ -22,7 +22,7 @@ export function Tab({
   }
   return (
     <>
-      <div onClick={() => click && click()}>
+      <div onClick={() => onClick && onClick()}>
         {label} {isActive ? "*" : ""}
       </div>
       {isActive && ReactDOM.createPortal(children, tabView)}

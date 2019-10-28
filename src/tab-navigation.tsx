@@ -1,5 +1,4 @@
 import React, { PropsWithChildren, useState, ReactElement } from "react";
-import { Tab } from "./tab";
 
 export function TabNavigation({ children }: PropsWithChildren<{}>) {
   if (
@@ -19,7 +18,7 @@ export function TabNavigation({ children }: PropsWithChildren<{}>) {
       {React.Children.map(children, child => {
         return React.isValidElement(child)
           ? React.cloneElement(child, {
-              click: () => setTabActive(child.props.tabID),
+              onClick: () => setTabActive(child.props.tabID),
               isActive: child.props.tabID === tabActive
             })
           : child;

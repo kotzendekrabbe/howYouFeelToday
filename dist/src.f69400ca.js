@@ -31793,7 +31793,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Tab(_ref) {
   var label = _ref.label,
       isActive = _ref.isActive,
-      click = _ref.click,
+      _onClick = _ref.onClick,
       children = _ref.children;
   var tabView = document.getElementById("tabViews");
 
@@ -31804,7 +31804,7 @@ function Tab(_ref) {
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     onClick: function onClick() {
-      return click && click();
+      return _onClick && _onClick();
     }
   }, label, " ", isActive ? "*" : ""), isActive && _reactDom.default.createPortal(children, tabView));
 }
@@ -31844,7 +31844,7 @@ function TabNavigation(_ref) {
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.Children.map(children, function (child) {
     return _react.default.isValidElement(child) ? _react.default.cloneElement(child, {
-      click: function click() {
+      onClick: function onClick() {
         return setTabActive(child.props.tabID);
       },
       isActive: child.props.tabID === tabActive
@@ -31884,7 +31884,7 @@ function ToggleButtons(_ref) {
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.Children.map(children, function (child) {
     return _react.default.isValidElement(child) ? _react.default.cloneElement(child, {
-      click: function click(value) {
+      onClick: function onClick(value) {
         setActiveButton(value);
         onActiveButtonChange(value);
       },
@@ -31907,13 +31907,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // destructoring: props.label  -> const {label} = props -> {label}
 function Button(_ref) {
   var label = _ref.label,
-      click = _ref.click,
+      _onClick = _ref.onClick,
       isActive = _ref.isActive,
       value = _ref.value;
-  return (// click && click boolishe prüfung - short cut evaluation
+  return (// click && click - short cut evaluation
     _react.default.createElement("button", {
       onClick: function onClick() {
-        return click && click(value);
+        return _onClick && _onClick(value);
       },
       type: "button"
     }, label, " ", isActive ? "*" : "")
