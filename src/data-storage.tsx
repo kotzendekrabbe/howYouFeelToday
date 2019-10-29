@@ -15,17 +15,16 @@ interface Data {
   [timestamp: string]: DataSample;
 }
 
-const STORAGE_KEY = "test-data";
+const STORAGE_KEY = "feeling-data";
 
 export const dataStorage = {
   save(value: Mood) {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"),
-        [Date.now()]: { feeling: { mood: value } }
-      })
-    );
+    const data: Data = {
+      ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"),
+      [Date.now()]: { feeling: { mood: value } }
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 };
 
