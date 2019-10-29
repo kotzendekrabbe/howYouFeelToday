@@ -20,11 +20,14 @@ const STORAGE_KEY = "feeling-data";
 export const dataStorage = {
   save(value: Mood) {
     const data: Data = {
-      ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"),
+      ...dataStorage.load(),
       [Date.now()]: { feeling: { mood: value } }
     };
-
+    // throw new Error("this is how I throw errors"); -> testing error
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  },
+  load(): Data {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   }
 };
 

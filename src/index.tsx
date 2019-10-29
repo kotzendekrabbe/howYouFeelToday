@@ -5,6 +5,7 @@ import { TabNavigation } from "./tab-navigation";
 import { FormButtons } from "./form-buttons";
 import { DataStorageContext, dataStorage } from "./data-storage";
 import { Feedback } from "./feedback";
+import { Export } from "./export";
 
 // custom hook
 function useForceRerender() {
@@ -35,6 +36,7 @@ function App() {
         <Tab label="Export" tabID={2}>
           <h1>Hallo Überschrift</h1>
           <div>Hallo Welt</div>
+          <Export />
         </Tab>
       </TabNavigation>
 
