@@ -15,21 +15,17 @@ interface Data {
   [timestamp: string]: DataSample;
 }
 
+const STORAGE_KEY = "test-data";
+
 export const dataStorage = {
   save(value: Mood) {
-    const dataSample: DataSample = { feeling: { mood: value } };
-    const dataTimestamp = Date.now();
-    const data: Data = { [dataTimestamp]: dataSample };
-
-    const storageData = localStorage.getItem("test-data");
-    const dataJSON = JSON.parse(storageData === null ? "{}" : storageData);
-
-    const newDataJSON = {
-      ...dataJSON,
-      ...data
-    };
-
-    localStorage.setItem("test-data", JSON.stringify(data));
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"),
+        [Date.now()]: { feeling: { mood: value } }
+      })
+    );
   }
 };
 
