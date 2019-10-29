@@ -1,7 +1,8 @@
 import React, { PropsWithChildren, useState } from "react";
+import { Mood } from "./data-storage";
 
 export interface ToggleButtonsProps {
-  onActiveButtonChange(value: string): void;
+  onActiveButtonChange(value: Mood): void;
 }
 
 export function ToggleButtons({
@@ -16,7 +17,7 @@ export function ToggleButtons({
       {React.Children.map(children, child => {
         return React.isValidElement(child)
           ? React.cloneElement(child, {
-              onClick: (value: string) => {
+              onClick: (value: Mood) => {
                 setActiveButton(value);
                 onActiveButtonChange(value);
               },

@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import { Tab } from "./tab";
 import { TabNavigation } from "./tab-navigation";
 import { FormButtons } from "./form-buttons";
+import { DataStorageContext, dataStorage } from "./data-storage";
 
 // custom hook
 function useForceRerender() {
@@ -16,7 +17,7 @@ function App() {
   useForceRerender();
 
   return (
-    <>
+    <DataStorageContext.Provider value={dataStorage}>
       <TabNavigation>
         <Tab label="Home" tabID={1}>
           <h1>Hello World</h1>
@@ -29,7 +30,7 @@ function App() {
       </TabNavigation>
 
       <div id="tabViews"></div>
-    </>
+    </DataStorageContext.Provider>
   );
 }
 
