@@ -25,6 +25,8 @@ function App() {
     "sent" | "error" | undefined
   >(undefined);
 
+  const [formChanged, setFormChanged] = useState(1);
+
   const sentForm = useCallback(
     formStatus => {
       setFormFeedback(formStatus);
@@ -32,8 +34,10 @@ function App() {
       setTimeout(() => {
         setFormFeedback(undefined);
       }, 2000);
+
+      setFormChanged(formChanged + 1);
     },
-    [setFormFeedback]
+    [setFormFeedback, formChanged]
   );
 
   return (
@@ -42,7 +46,7 @@ function App() {
       <TabNavigation>
         <Tab label="Home" tabID={1}>
           <Headline>Hello World</Headline>
-          <FormButtons sentForm={sentForm} />
+          <FormButtons sentForm={sentForm} key={formChanged} />
           {formFeedback && <Feedback formFeedback={formFeedback} />}
         </Tab>
         <Tab label="Export" tabID={2}>
