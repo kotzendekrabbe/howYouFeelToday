@@ -18,7 +18,6 @@ export function Tab({
   const tabView = document.getElementById("tabViews");
   if (!tabView) {
     return null;
-    throw new Error("No View honey!");
   }
   return (
     <>

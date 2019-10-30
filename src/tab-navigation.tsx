@@ -1,6 +1,21 @@
-import React, { PropsWithChildren, useState, ReactElement } from "react";
+import React, {
+  PropsWithChildren,
+  useState,
+  useEffect,
+  ReactElement
+} from "react";
+
+// custom hook
+function useForceRerender() {
+  const [, changeHook] = useState(0);
+  useEffect(() => {
+    changeHook(1);
+  }, []);
+}
 
 export function TabNavigation({ children }: PropsWithChildren<{}>) {
+  useForceRerender();
+
   if (
     !children ||
     !Array.isArray(children) ||
@@ -23,6 +38,7 @@ export function TabNavigation({ children }: PropsWithChildren<{}>) {
             })
           : child;
       })}
+      <div id="tabViews"></div>
     </>
   );
 }

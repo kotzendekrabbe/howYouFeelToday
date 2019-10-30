@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { render } from "react-dom";
 import { Tab } from "./tab";
 import { TabNavigation } from "./tab-navigation";
@@ -7,23 +7,21 @@ import { DataStorageContext, dataStorage } from "./data-storage";
 import { Feedback } from "./feedback";
 import { Export } from "./export";
 
-// custom hook
-function useForceRerender() {
-  const [, changeHook] = useState(0);
-  useEffect(() => {
-    changeHook(1);
-  }, []);
-}
-
 function App() {
-  useForceRerender();
   const [formFeedback, setFormFeedback] = useState<
     "sent" | "error" | undefined
   >(undefined);
 
-  const sentForm = useCallback(formStatus => setFormFeedback(formStatus), [
-    setFormFeedback
-  ]);
+  const sentForm = useCallback(
+    formStatus => {
+      setFormFeedback(formStatus);
+
+      setTimeout(() => {
+        setFormFeedback(undefined);
+      }, 2000);
+    },
+    [setFormFeedback]
+  );
 
   return (
     <DataStorageContext.Provider value={dataStorage}>
@@ -39,8 +37,6 @@ function App() {
           <Export />
         </Tab>
       </TabNavigation>
-
-      <div id="tabViews"></div>
     </DataStorageContext.Provider>
   );
 }

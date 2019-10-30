@@ -21,6 +21,7 @@ export const dataStorage = {
   save(value: Mood) {
     const data: Data = {
       ...dataStorage.load(),
+      // [] setzen den enthaltenen wert als key
       [Date.now()]: { feeling: { mood: value } }
     };
     // throw new Error("this is how I throw errors"); -> testing error
