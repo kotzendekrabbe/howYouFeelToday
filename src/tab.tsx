@@ -1,5 +1,13 @@
 import React, { PropsWithChildren } from "react";
 import ReactDOM from "react-dom";
+import styled from "styled-components";
+
+const TabLabel = styled.div`
+  font-size: 16px;
+  font-family: monospace, sans-serif;
+  display: inline-block;
+  margin: 0 0 0 15px;
+`;
 
 export interface TabProps {
   readonly label: string;
@@ -21,9 +29,9 @@ export function Tab({
   }
   return (
     <>
-      <div onClick={() => onClick && onClick()}>
+      <TabLabel onClick={() => onClick && onClick()}>
         {label} {isActive ? "*" : ""}
-      </div>
+      </TabLabel>
       {isActive && ReactDOM.createPortal(children, tabView)}
     </>
   );
