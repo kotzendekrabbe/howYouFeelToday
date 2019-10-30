@@ -38,7 +38,7 @@ export const Export: FC = () => {
             );
           });
 
-          refA.current.href = `data:,${encodeURIComponent(
+          refA.current.href = `data:text/csv,${encodeURIComponent(
             "Date;Feeling;Note\n" + lines.join("\n")
           )}`;
         }
