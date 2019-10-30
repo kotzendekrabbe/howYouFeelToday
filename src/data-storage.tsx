@@ -18,11 +18,11 @@ interface Data {
 const STORAGE_KEY = "feeling-data";
 
 export const dataStorage = {
-  save(value: Mood) {
+  save(value: Mood, note?: string) {
     const data: Data = {
       ...dataStorage.load(),
       // [] setzen den enthaltenen wert als key
-      [Date.now()]: { feeling: { mood: value } }
+      [Date.now()]: { feeling: { mood: value, note: note } }
     };
     // throw new Error("this is how I throw errors"); -> testing error
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
