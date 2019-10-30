@@ -1,5 +1,14 @@
-import React, { FC, useState } from "react";
-import { Mood } from "./data-storage";
+import React, { FC } from "react";
+import styled from "styled-components";
+
+const StyledNote = styled.textarea`
+  display: block;
+  width: 100%;
+  padding: 15px;
+
+  border: 1px solid #4502da;
+  font-size: 1rem;
+`;
 
 export interface NoteProps {
   readonly placeholder?: string;
@@ -9,12 +18,12 @@ export interface NoteProps {
 
 export const Note: FC<NoteProps> = ({ placeholder, value, onChangeNote }) => {
   return (
-    <textarea
+    <StyledNote
       placeholder={placeholder}
       value={value}
       onChange={e => {
         onChangeNote(e.target.value);
       }}
-    ></textarea>
+    ></StyledNote>
   );
 };

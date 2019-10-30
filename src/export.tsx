@@ -1,5 +1,17 @@
 import React, { FC, useContext, useRef } from "react";
 import { DataStorageContext } from "./data-storage";
+import styled from "styled-components";
+
+const StyledExport = styled.a`
+  display: block;
+  margin: 10px 0;
+  padding: 10px 15px;
+  width: 100%;
+  background-color: #03ffb7;
+  color: #333;
+  font-size: 1rem;
+  text-decoration: none;
+`;
 
 export const Export: FC = () => {
   const dataStorage = useContext(DataStorageContext);
@@ -7,7 +19,7 @@ export const Export: FC = () => {
   const refA = useRef<null | HTMLAnchorElement>(null);
 
   return (
-    <a
+    <StyledExport
       href="#"
       download="meinedatei.csv"
       onClick={() => {
@@ -45,7 +57,7 @@ export const Export: FC = () => {
       }}
       ref={refA}
     >
-      export
-    </a>
+      Export localStorage
+    </StyledExport>
   );
 };

@@ -1,4 +1,18 @@
 import React, { PropsWithChildren } from "react";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  display: block;
+  margin: 10px 0;
+  padding: 10px 15px;
+  width: 100%;
+  border: 0;
+  background-color: #4502da;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: none;
+  text-align: left;
+`;
 
 export interface ButtonProps {
   readonly label: string;
@@ -17,9 +31,9 @@ export function Button({
 }: PropsWithChildren<ButtonProps>) {
   return (
     // click && click - short cut evaluation
-    <button onClick={() => onClick && onClick(value)} type="button">
+    <StyledButton onClick={() => onClick && onClick(value)} type="button">
       {label} {isActive ? "*" : ""}
-    </button>
+    </StyledButton>
   );
 }
 

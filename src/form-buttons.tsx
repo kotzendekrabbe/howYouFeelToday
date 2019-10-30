@@ -3,6 +3,20 @@ import { ToggleButtons } from "./toggle-buttons";
 import { Button } from "./button";
 import { DataStorageContext, Mood } from "./data-storage";
 import { Note } from "./note";
+import styled from "styled-components";
+
+const StyledSubmit = styled.button`
+  display: block;
+  width: auto;
+  border: 0;
+  text-align: right;
+  font-size: 1rem;
+  padding: 10px 15px;
+  margin: 20px 0 10px auto;
+  background-color: #03ffb7;
+  color: #333;
+  box-shadow: none;
+`;
 
 export interface FormButtonsProps {
   sentForm(formStatus: "sent" | "error"): void;
@@ -37,8 +51,14 @@ export function FormButtons({ sentForm }: FormButtonsProps) {
   return (
     <form>
       <ToggleButtons onActiveButtonChange={onActiveButtonChange}>
-        <Button label="good" value="good" />
-        <Button label="bad" value="bad" />
+        <Button label="Angst" value="Angst" />
+        <Button label="Ärger" value="Ärger" />
+        <Button label="Abneigung" value="Abneigung" />
+        <Button label="Nieder-Geschlagenheit" value="Nieder-Geschlagenheit" />
+        <Button label="Zuneigung" value="Zuneigung" />
+        <Button label="Freude" value="Freude" />
+        <Button label="Scham" value="Scham" />
+        <Button label="Trauer" value="Trauer" />
       </ToggleButtons>
 
       <Note
@@ -47,14 +67,14 @@ export function FormButtons({ sentForm }: FormButtonsProps) {
         onChangeNote={onChangeNote}
       />
 
-      <button
+      <StyledSubmit
         type="button"
         // ! means - I'm sure that you are wrong compiler ;)
         onClick={onFormButtonSubmit}
         disabled={!Boolean(buttonName)}
       >
         Submit
-      </button>
+      </StyledSubmit>
     </form>
   );
 }

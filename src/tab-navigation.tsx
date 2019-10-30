@@ -4,6 +4,13 @@ import React, {
   useEffect,
   ReactElement
 } from "react";
+import styled from "styled-components";
+
+const StyledTabs = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
 // custom hook
 function useForceRerender() {
@@ -30,14 +37,17 @@ export function TabNavigation({ children }: PropsWithChildren<{}>) {
 
   return (
     <>
-      {React.Children.map(children, child => {
-        return React.isValidElement(child)
-          ? React.cloneElement(child, {
-              onClick: () => setTabActive(child.props.tabID),
-              isActive: child.props.tabID === tabActive
-            })
-          : child;
-      })}
+      <StyledTabs>
+        {React.Children.map(children, child => {
+          return React.isValidElement(child)
+            ? React.cloneElement(child, {
+                onClick: () => setTabActive(child.props.tabID),
+                isActive: child.props.tabID === tabActive
+              })
+            : child;
+        })}
+      </StyledTabs>
+
       <div id="tabViews"></div>
     </>
   );
